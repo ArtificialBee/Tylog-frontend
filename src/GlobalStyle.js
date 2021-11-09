@@ -1,4 +1,7 @@
 import { createGlobalStyle } from "styled-components";
+import theme from "./themes/themes";
+
+
 
 const GlobalStyle = createGlobalStyle`
     body{
@@ -6,8 +9,6 @@ const GlobalStyle = createGlobalStyle`
         margin:0;
         padding:0;
         font-family:  'Montserrat', sans-serif;
-        max-width: 1440px;
-        margin:0 auto;
         font-size: 16px;
         &::-webkit-scrollbar {
             display:none;

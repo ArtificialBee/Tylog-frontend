@@ -1,8 +1,15 @@
 import React from 'react';
 import styled, { useTheme } from 'styled-components/macro';
+import { Link } from 'react-router-dom';
 
 //Styled components
 import { Button, WidthFromLeft } from '../../style';
+
+const NavbarStyle = styled.div`
+    width:100%;
+    display:flex;
+    justify-content: right;
+`;
 
 const NavbarItems = styled.div`
     width:320px;
@@ -15,7 +22,6 @@ const NavbarItems = styled.div`
 const NavbarLinks = styled.p`
     font-size:0.9375em;
     color:${({ color }) => color};
-    text-decoration:none;
     font-family:  'Montserrat', sans-serif;
     cursor:pointer;
     transition: all 0.1s ease-in-out;
@@ -46,26 +52,34 @@ const Navbar = () => {
     const theme = useTheme();
 
     return (
-        <NavbarItems>
-            <NavbarLinks color={theme.colors.lightgray} hover>
-                Documentation
-            </NavbarLinks>
-            <NavbarLinks color={theme.colors.lightgray} hover>
-                Sign up
-            </NavbarLinks>
-            <Button height="35px"
-                borderRadius="50px"
-                width="80px"
-                bg="none"
-                textColor="#681F7D"
-                border={`2px solid ${theme.colors.darkprpl}`}
-                hoverBg="#8400ab"
-                hoverColor="white">
-                <NavbarLinks noAfter>
-                    Login
-                </NavbarLinks>
-            </Button>
-        </NavbarItems>
+        <NavbarStyle>
+            <NavbarItems>
+                <Link to="/doc" style={{ textDecoration: "none" }}>
+                    <NavbarLinks color={theme.colors.lightgray} hover>
+                        Documentation
+                    </NavbarLinks>
+                </Link>
+                <Link to="/signup" style={{ textDecoration: "none" }}>
+                    <NavbarLinks color={theme.colors.lightgray} hover>
+                        Sign up
+                    </NavbarLinks>
+                </Link>
+                <Link to="/login" style={{ textDecoration: "none" }}>
+                    <Button height="35px"
+                        borderRadius="50px"
+                        width="80px"
+                        bg="none"
+                        textColor="#681F7D"
+                        border={`2px solid ${theme.colors.darkprpl}`}
+                        hoverBg="#8400ab"
+                        hoverColor="white">
+                        <NavbarLinks noAfter>
+                            Login
+                        </NavbarLinks>
+                    </Button>
+                </Link>
+            </NavbarItems>
+        </NavbarStyle>
     );
 }
 

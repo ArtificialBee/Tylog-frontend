@@ -8,13 +8,14 @@ import Logo from '../../Assets/Logo.png'
 import Navbar from '../../Components/Navbar/Navbar';
 
 const LandingPageStyle = styled.div`
-    width:100vw;
+    width:100%;
     height:100vh;
 `;
 
 const LogoImage = styled.img`
     position:absolute;
     padding-left:20px;
+    padding-top:20px;
 `;
 
 const LandingPage = () => {

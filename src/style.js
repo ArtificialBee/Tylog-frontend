@@ -23,6 +23,7 @@ export const Button = styled.button`
     color:${({ textColor }) => textColor};
     transition:color 0.1s linear;
     transition:background 0.3s ease-in-out;
+    cursor:pointer;
     &:hover{
         background:${({ hoverBg }) => hoverBg};
         color:${({ hoverColor }) => hoverColor};
