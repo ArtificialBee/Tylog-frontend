@@ -17,6 +17,9 @@ const NavbarItems = styled.div`
     justify-content: space-between;
     align-items:center;
     margin:20px 20px 0 auto;
+    &>a{
+        text-decoration:none;
+    }
 `;
 
 const NavbarLinks = styled.p`
@@ -29,14 +32,14 @@ const NavbarLinks = styled.p`
     padding:0;
     position:relative;
     &::after{
-            position:absolute;
-            content:'';
-            width:0%;
-            height:1px;
-            background:${({ theme }) => theme.colors.lightprpl};
-            bottom:-5px;
-            left:0;
-            transition:width 0.3s cubic-bezier(1.000, 0.010, 0.570, 0.665);
+        position:absolute;
+        content:'';
+        width:0%;
+        height:1px;
+        background:${({ theme }) => theme.colors.lightprpl};
+        bottom:-5px;
+        left:0;
+        transition:width 0.3s cubic-bezier(0.415, 1.025, 0.675, 0.945);
     }
     &:hover{
         color:${(props) => props.hover ? props.theme.colors.lightprpl : "none"};
@@ -47,6 +50,17 @@ const NavbarLinks = styled.p`
     }
 `;
 
+const LoginBtn = styled(Button)`
+    height:35px;
+    border-radius:5px;
+    font-size:0.9375em;
+    width:80px;
+    background:none;
+    color:#681F7D;
+    /* border: 2px solid ${({ theme }) => theme.colors.darkprpl}; */
+    border: none;
+`;
+
 const Navbar = () => {
 
     const theme = useTheme();
@@ -54,29 +68,24 @@ const Navbar = () => {
     return (
         <NavbarStyle>
             <NavbarItems>
-                <Link to="/doc" style={{ textDecoration: "none" }}>
+                <Link to="/doc" >
                     <NavbarLinks color={theme.colors.lightgray} hover>
                         Documentation
                     </NavbarLinks>
                 </Link>
-                <Link to="/signup" style={{ textDecoration: "none" }}>
+                <Link to="/signup" >
                     <NavbarLinks color={theme.colors.lightgray} hover>
                         Sign up
                     </NavbarLinks>
                 </Link>
-                <Link to="/login" style={{ textDecoration: "none" }}>
-                    <Button height="35px"
-                        borderRadius="50px"
-                        width="80px"
-                        bg="none"
-                        textColor="#681F7D"
-                        border={`2px solid ${theme.colors.darkprpl}`}
+                <Link to="/login" >
+                    <LoginBtn
                         hoverBg="#8400ab"
                         hoverColor="white">
                         <NavbarLinks noAfter>
                             Login
                         </NavbarLinks>
-                    </Button>
+                    </LoginBtn>
                 </Link>
             </NavbarItems>
         </NavbarStyle>

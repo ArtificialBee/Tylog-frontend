@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react'
+import React, { useState } from 'react'
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import styled, { useTheme } from 'styled-components';
+import styled, { useTheme } from 'styled-components/macro';
 
 //Pages
 import LandingPage from './Pages/LandingPage/LandingPage';
@@ -10,26 +10,27 @@ import SignUp from './Pages/SignUp/SignUp'
 //Components
 
 const AppStyle = styled.div`
+  /* background:red; */
   background:${({ background }) => background};
-
-`;
+  width:100vw;
+  height:100vh;
+  `;
 
 const Content = styled.div`
   max-width:1440px;
+  height:100%;
   margin:0 auto;
 `;
 
 
 function App() {
 
-  const theme = useTheme();
 
-  useEffect(() => {
-    console.log("pozvala sam seeeeeeee!!!!!");
-  }, [window.location.pathname]);
+  const theme = useTheme();
+  const [bg, setBg] = useState(theme.backgrounds.default)
 
   return (
-    <AppStyle>
+    <AppStyle background={bg}>
       <Content>
         <Router>
           <Routes>
