@@ -4,10 +4,12 @@ import theme from "./themes/themes";
 
 
 const GlobalStyle = createGlobalStyle`
-    body{
+    *{
         box-sizing:border-box;
         margin:0;
         padding:0;
+    }
+    body{
         font-family:  'Montserrat', sans-serif;
         font-size: 16px;
         &::-webkit-scrollbar {

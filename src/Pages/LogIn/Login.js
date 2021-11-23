@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { useForm } from 'react-hook-form';
 
 //Components
 import Input from '../../Components/Input/Input';
 import ForgotPassword from '../../Components/ForgotPassword/ForgetPassword';
 import SubmitForm from '../../Components/SubmitForm/SubmitForm';
+import Errors from '../../Components/Errors/Errors';
 
 //Assets
 import DummyProfilePicture from '../../Assets/Login/DummyProfilePicture.svg'
 import { BiEnvelope, BiKey } from 'react-icons/bi'
-// import Logo from '../../Assets/Login/Logo.png'
 import Logo from '../../Components/Logo/Logo';
 
 
@@ -47,50 +48,54 @@ const LogoImage = styled.img`
     top:32px;
 `;
 
+const ErrorStyle = styled.p`
+    color:red;
+    font-size:0.6rem;
+`;
+
 
 
 const Login = () => {
+    const { register, formState: { errors }, handleSubmit } = useForm();
 
-    const [data, setData] = useState({
-        email: '',
-        password: ''
-    })
-
-    const emailHandler = e => {
-        setData({ ...data, email: e.target.value });
-    }
-    const passwordHandler = e => {
-        setData({ ...data, password: e.target.value });
+    const onSubmit = (data) => {
+        console.log('ISPISANO ', data);
     }
 
     return (
         <LoginWrapper>
             <Logo />
-            {/* <LogoImage src={Logo} /> */}
-            <LoginStyle>
+            <LoginStyle >
                 <DummyProfile src={DummyProfilePicture} />
-                <InputWrapper>
+                <InputWrapper onSubmit={handleSubmit(onSubmit)}>
                     <Input
-                        type="text"
+                        type="email"
                         placeholder="Email"
-                        change={(e) => emailHandler(e)}
-                        icon={<BiEnvelope size={20} />} />
+                        register={register}
+                        label="email"
+                        required
+                        icon={<BiEnvelope size={20} />}
+                        errors />
+                    {errors.email?.type === "required" ? <ErrorStyle>This field is required</ErrorStyle> : ""}
                     <Input
                         type="password"
+                        required
                         placeholder="Password"
-                        change={(e) => passwordHandler(e)}
-                        icon={<BiKey size={20} />} />
+                        register={register}
+                        label="password"
+                        icon={<BiKey size={20} />}
+                        errors />
+                    {errors.password?.type === "required" ? <ErrorStyle>This field is required</ErrorStyle> : ""}
+                    <ForgotPassword link={'/forget-password'}>
+                        Forget Password?
+                    </ForgotPassword>
+                    <SubmitForm
+                        color="#7461C0">
+                        Login
+                    </SubmitForm>
                 </InputWrapper>
-                <ForgotPassword link={'/forget-password'}>
-                    Forget Password?
-                </ForgotPassword>
-                <SubmitForm
-                    color="#7461C0"
-                    link="/">
-                    Login
-                </SubmitForm>
             </LoginStyle>
-        </LoginWrapper>
+        </LoginWrapper >
     );
 }
 

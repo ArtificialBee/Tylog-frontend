@@ -1,5 +1,8 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+
+// //Components
+// import Errors from '../Errors/Errors';
 
 const InputStyle = styled.div`
     display:flex;
@@ -16,7 +19,7 @@ const InputField = styled.input`
     border:none;
     outline:none;
     width:300px;
-    font-size:1.25rem;
+    font-size:1rem;
     font-weight:lighter;
     color:${({ fontColor }) => fontColor};
     padding-left:10px;
@@ -30,15 +33,20 @@ const Icon = styled.div`
 `;
 
 
-
 const Input = ({
     type,
     placeholder,
-    change,
-    icon
+    icon,
+    register,
+    label,
+    required,
+    minLength,
+    maxLength,
+    errors
 }) => {
 
     const [color, setColor] = useState('#646464');
+    const [pholder, setPholder] = useState(placeholder);
 
     return (
         <InputStyle bColor={color}>
@@ -47,11 +55,11 @@ const Input = ({
             </Icon>
             <InputField
                 type={type}
-                placeholder={placeholder}
-                onChange={change}
+                placeholder={pholder}
+                {...register(label, { required: required, minLength: minLength, maxLength: maxLength })}
                 fontColor={color}
-                onFocus={() => setColor('#6749E2')}
-                onBlur={() => setColor('#646464')} />
+                onFocus={() => { setColor('#6749E2'); setPholder('') }}
+                onBlur={() => { setColor('#646464'); setPholder(placeholder) }} />
         </InputStyle>
     );
 };

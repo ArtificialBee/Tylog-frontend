@@ -13,11 +13,16 @@ const ArrowsAnimation = keyframes`
     }
 `;
 
-const Wrapper = styled.div`
+const Wrapper = styled.button`
     display:flex;
     align-items:center;
     padding:0;
     margin:0;
+    background:none;
+    border:0px;
+    cursor: pointer;
+    width:100%;
+    justify-content: center;
     &>svg{
         padding:0;
         margin:0;
@@ -38,16 +43,13 @@ const ChildrenText = styled.p`
 
 const SubmitForm = ({
     children,
-    color,
-    link
+    color
 }) => {
     return (
-        <Link to={link} style={{ textDecoration: "none" }}>
-            <Wrapper>
-                <ChildrenText>{children}</ChildrenText>
-                <BiChevronsRight color={color} size="50" style={{ padding: "0", margin: "0" }} />
-            </Wrapper>
-        </Link>
+        <Wrapper>
+            <ChildrenText>{children}</ChildrenText>
+            <BiChevronsRight color={color} size="50" style={{ padding: "0", margin: "0" }} />
+        </Wrapper>
     );
 }
 

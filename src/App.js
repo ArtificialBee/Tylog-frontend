@@ -6,6 +6,7 @@ import styled, { useTheme } from 'styled-components/macro';
 import LandingPage from './Pages/LandingPage/LandingPage';
 import Login from './Pages/LogIn/Login'
 import SignUp from './Pages/SignUp/SignUp'
+import Organisations from './Pages/UserOrganisation/Organisations';
 
 //Components
 
@@ -16,12 +17,6 @@ const AppStyle = styled.div`
   height:100vh;
   `;
 
-const Content = styled.div`
-  max-width:1440px;
-  height:100%;
-  margin:0 auto;
-`;
-
 
 function App() {
 
@@ -31,15 +26,14 @@ function App() {
 
   return (
     <AppStyle background={bg}>
-      <Content>
-        <Router>
-          <Routes>
-            <Route path="/" element={<LandingPage />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<SignUp />} />
-          </Routes>
-        </Router>
-      </Content>
+      <Router>
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/organisations" element={<Organisations />} />
+        </Routes>
+      </Router>
     </AppStyle>
   );
 }
